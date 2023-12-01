@@ -2,7 +2,7 @@ import re
 import sys 
 
 
-def problemOne(line):
+def problemOne(input_list):
     cal_sum = 0    
 
     for line in input_list:
