@@ -26,4 +26,4 @@ print(check(["qxbhjmmqsixfkfn36three6"]))
 print(check(["qweqw2e"]))
 
 
-# print(calibration_sum)
+# print(calibration_sum)git pu
