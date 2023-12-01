@@ -1,5 +1,6 @@
 1: Trebuchet?! ---
- - combining the first digit and the last digit (in that order) to form a single two-digit number.
+PART ONE: 
+    - combining the first digit and the last digit (in that order) to form a single two-digit number.
     For example:
         1abc2
         pqr3stu8vwx
@@ -7,4 +8,46 @@
         treb7uchet      # If there is only 1 digit then you repeat it cause its the first and last digit by it self
     In this example, the calibration values of these four lines are 12, 38, 15, and 77. Adding these together produces 142.
 
-    TasK: Consider your entire calibration document. What is the sum of all of the calibration values?
+    Task: Consider your entire calibration document. What is the sum of all of the calibration values?
+
+
+    WHAT I UNDERSTAND:
+        -> I'll get a bunch of strings separated with a new line where the strings on each line (could have) a digit within them and the task is to find the first and and last digit thats in the string and sum them up to find the total
+            - best case 1st and last char is a digit 
+            - worst case there is not digit 
+            - there could be only 1 digit in that case you take that digit twice 
+
+        -> major point when you find the 2 digits, or the single digit for that matter you don't add them together you take there concat and convert it to a single number in the examples first case 1 and 2 are the digits the value you add to the total is 12 not 3!
+        -> you can have a string that doesn't have any digits in that case just return 0 cause it won't make a difference 
+
+    POSSIBLE SOLUTION:
+        -> Read the input file and for each line in the file send that to a function that returns 0 if there are not digits, the digits double if there is only 1 digit or the digits that are in the first and last place concatenated and converted to an int.
+
+        -> the function takes the strings and parses out the digits from the strings using isdigit() then to return list[0], list[-1] will represent or index the first and last element
+
+        -> create a global total variable to store the sum then add the return to it then when the parsing is done ill get the answer 
+
+    
+
+PART TWO:
+    - some of the digits are actually spelled out with letters: one, two, three, four, five, six, seven, eight, and nine also count as valid "digits".
+
+    For example. 
+        two1nine
+        eightwothree
+        abcone2threexyz
+        xtwone3four
+        4nineeightseven2
+        zoneight234
+        7pqrstsixteen
+    In this example, the calibration values are 29, 83, 13, 24, 42, 14, and 76. Adding these together produces 281.
+
+
+    WHAT I UNDERSTAND:
+        -> the same strings will have numbers that are spelled out it it looks like their just 1-9 which will need to be considered when picking the first and last digit out of the strings 
+
+
+    POSSIBLE SOLUTION:
+        -> Am guessing am gonna use re to create the pattern and match it with the strings so using re the process will be ill need a dictionary to have spelled out number: digit pair that ill use to cross check the actual pattern the re will match out give me words for 
+
+        -> so ill probably end up getting a list that would look like ["three",2,4,"nine"] and ill use the dict by just iterating over the draft list i created using the pattern then change them with the value out of the key if there in the dict meaning if there spelled out if not just add them to the draft then add the int of the concatenated [0], [-1] char in the draft to the total and ill get the answer 

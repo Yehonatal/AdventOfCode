@@ -5,9 +5,6 @@ calibration_sum = 0
 def calibration(line):
     digits = [x for x in line if x.isdigit()]
 
-    if len(digits) == 1:
-        return int(2 * digits[0])
-
     if len(digits): return int(digits[0]+digits[-1])
     else: return 0
 
