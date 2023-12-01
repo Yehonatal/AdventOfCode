@@ -1,7 +1,20 @@
 import re
 import sys 
 
-def calibration_sum(input_list):
+
+def problemOne(line):
+    cal_sum = 0    
+
+    for line in input_list:
+        num_list = re.findall(r"\d", line)
+        num  = num_list[0] + num_list[-1]
+
+        cal_sum += int(num)
+
+    return cal_sum
+
+
+def problemTwo(input_list):
     nums = {
         "one": "1",
         "two": "2",
@@ -32,8 +45,8 @@ def calibration_sum(input_list):
     return cal_sum
 
 
+# Parse input and create a list 
 if (len(sys.argv) != 2):
-    print("Usage: python script.py <filename>")
     sys.exit(1)
 
 
@@ -48,6 +61,6 @@ except FileNotFoundError:
 except Exception as e:
     print("Error", e)
 
-
-
-print(calibration_sum(input_list))
+# use the list
+print(problemOne(input_list))
+print(problemTwo(input_list))

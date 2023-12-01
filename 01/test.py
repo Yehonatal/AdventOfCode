@@ -9,7 +9,14 @@ def check(input_list):
         calibration_sum += int(num)
 
     return calibration_sum
-    
+
+def calibration(line):
+    digits = [x for x in line if x.isdigit()]
+
+    if len(digits): return int(digits[0]+digits[-1])
+    else: return 0
+
+
     
 
 # calibration_sum += check("1234")
