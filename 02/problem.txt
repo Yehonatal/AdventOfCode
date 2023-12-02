@@ -1,0 +1,31 @@
+2: Cube Conundrum (https://adventofcode.com/2023/day/2) ---
+PART ONE:
+    - Determine which games would have been possible if the bag had been loaded with only 12 red cubes, 13 green cubes, and 14 blue cubes. Each game is listed with its ID number (like the 11 in Game 11: ...) followed by a semicolon-separated list of subsets of cubes that were revealed from the bag (like 3 red, 5 green, 4 blue).
+
+    For example, the record of a few games might look like this:
+        Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green
+        Game 2: 1 blue, 2 green; 3 green, 4 blue, 1 red; 1 green, 1 blue
+        Game 3: 8 green, 6 blue, 20 red; 5 blue, 4 red, 13 green; 5 green, 1 red
+        Game 4: 1 green, 3 red, 6 blue; 3 green, 6 red; 3 green, 15 blue, 14 red
+        Game 5: 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green
+        
+        In the example above, games 1, 2, and 5 would have been possible if the bag had been loaded with that configuration.
+
+    
+    Task: For the given input data which games would have been possible if the bag contained only 12 red cubes, 13 green cubes, and 14 blue cubes? return the sum of the IDs of those games.
+
+
+    WHAT I UNDERSTAND:
+        -> I'll get a input data of the games which will have 3 sets of values for each of the three colors where they will have values that should not be greater then the limits that are set and I need to store that games that are with in the limit and return the sum of the ID's of those games.
+
+    
+    POSSIBLE SOLUTION:
+        - create a variable to hold the sum of ID's then iterate over the input data ( create a list of the lines )
+        - set a boolean to check against later on 
+        - get the id_ and sets of games from the line ( split it by : )
+        - for each set in the sets spread it to the number and color value then for each set check if number is greater then the corresponding value from the limit dict your gonna create on the fly ( {dict}.get(color, 0) ) then if its greater set the boolean to false if not move on to the next and after that iteration completes if the game is possible 
+
+        - check that status and add the ID to the total variable 
+
+PART TWO:
+    - fewest number of cubes of each color that could have been in the bag to make the game possible?
