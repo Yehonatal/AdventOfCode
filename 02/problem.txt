@@ -55,4 +55,4 @@ PART TWO:
 
         - add the product of the 3 max values of the set into the variable thats hold the total 
 
-        return the total when you finish iterating over the whole data set 
+        - return the total when you finish iterating over the whole data set 
