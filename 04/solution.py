@@ -22,7 +22,7 @@ def getPoints(Data):
 
     return total
 
-def getCopies(Data):
+def getAllCards(Data):
     winning_cards = collections.defaultdict(int)
     for i, line in enumerate(Data.split("\n")):
         winning_cards[i] += 1
@@ -40,4 +40,4 @@ def getCopies(Data):
 
 
 print(getPoints(Data))
-print(getCopies(Data))
+print(getAllCards(Data))
