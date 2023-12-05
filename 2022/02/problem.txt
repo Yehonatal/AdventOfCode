@@ -1,0 +1,24 @@
+4: Scratchcards (https://adventofcode.com/2023/day/4) ---
+PART ONE    
+    -
+
+    Task: 
+
+    WHAT I UNDERSTAND:
+        -> 
+
+    
+    POSSIBLE SOLUTION:
+        - 
+
+PART TWO 
+    - 
+
+    Task: 
+
+
+    WHAT I UNDERSTAND:
+        ->
+    
+    POSSIBLE SOLUTION:
+        - 
