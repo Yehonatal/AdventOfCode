@@ -1,78 +1,77 @@
-import sys 
+import sys
+import re
+from collections import defaultdict
+D = open(sys.argv[1]).read().strip()
+L = D.split('\n')
 
-Data = open(sys.argv[1]).read().strip()
+parts = D.split('\n\n')
+seed, *others = parts
+seed = [int(x) for x in seed.split(':')[1].split()]
 
-lines = Data.split("\n")
+class Function:
+  def __init__(self, S):
+    lines = S.split('\n')[1:] # throw away name
+    # dst src sz
+    self.tuples: list[tuple[int,int,int]] = [[int(x) for x in line.split()] for line in lines]
+    #print(self.tuples)
+  def apply_one(self, x: int) -> int:
+    for (dst, src, sz) in self.tuples:
+      if src<=x<src+sz:
+        return x+dst-src
+    return x
 
-lines = [line.strip() for line in lines if len(line)]
+  # list of [start, end) ranges
+  def apply_range(self, R):
+    A = []
+    for (dest, src, sz) in self.tuples:
+      src_end = src+sz
+      NR = []
+      while R:
+        # [st                                     ed)
+        #          [src       src_end]
+        # [BEFORE ][INTER            ][AFTER        )
+        (st,ed) = R.pop()
+        # (src,sz) might cut (st,ed)
+        before = (st,min(ed,src))
+        inter = (max(st, src), min(src_end, ed))
+        after = (max(src_end, st), ed)
+        if before[1]>before[0]:
+          NR.append(before)
+        if inter[1]>inter[0]:
+          A.append((inter[0]-src+dest, inter[1]-src+dest))
+        if after[1]>after[0]:
+          NR.append(after)
+      R = NR
+    return A+R
 
-initial_seeds = [int(x) for x in lines[0].split(":")[1].split()]
+Fs = [Function(s) for s in others]
 
-def create_new_seeds(initial_seeds):
-    new_seeds = []
-    i, j = 0, 1
+def f(R, o):
+  A = []
+  for line in o:
+    dest,src,sz = [int(x) for x in line.split()]
+    src_end = src+sz
 
-    while j <= len(initial_seeds):
-        for k in range(initial_seeds[j]):
-            new_seeds.append(initial_seeds[i] + k)
-        i = j + 1
-        j = i + 1
+P1 = []
+for x in seed:
+  for f in Fs:
+    x = f.apply_one(x)
+  P1.append(x)
+print(min(P1))
+
+P2 = []
+pairs = list(zip(seed[::2], seed[1::2]))
+for st, sz in pairs:
+  # inclusive on the left, exclusive on the right
+  # e.g. [1,3) = [1,2]
+  # length of [a,b) = b-a
+  # [a,b) + [b,c) = [a,c)
+  R = [(st, st+sz)]
+  for f in Fs:
+    R = f.apply_range(R)
+  #print(len(R))
+  P2.append(min(R)[0])
+print(min(P2))
 
 
-    return new_seeds
-
-initial_seeds = create_new_seeds(initial_seeds) # part 2 just eats my RAM 🤧
-
-
-maps = {}
-
-lines = lines[1:]
-i = 0
-for j in range(len(lines)):
-    if lines[j][0].isalpha():
-        maps[lines[j].split()[0]] = []
-        i = j
-    else:
-        if lines[i].split()[0] in maps:
-            maps[lines[i].split()[0]].append(lines[j])
-
-def returnList(key):
-    list_ = [x.split() for x in list(maps[key])]
-    list__ = []
-    for x in list_:
-        list__.append([int(y) for y in x])
-
-    return list__
-
-seed_to_soil_map = returnList("seed-to-soil")
-soil_to_fertilizer_map = returnList("soil-to-fertilizer")
-fertilizer_to_water_map =  returnList("fertilizer-to-water")
-water_to_light_map =  returnList("water-to-light")
-light_to_temperature_map =  returnList("light-to-temperature") 
-temperature_to_humidity_map =  returnList("temperature-to-humidity")
-humidity_to_location_map =  returnList("humidity-to-location") 
-
-def convert_number(number, conversion_map):
-    for dest_start, source_start, length in conversion_map:
-        if source_start <= number < source_start + length:
-            return dest_start + (number - source_start)
-    return number 
-
-# Function to find the lowest location number
-def find_lowest_location(initial_seeds):
-    lowest_location = float('inf') 
-
-    for seed in initial_seeds:
-        soil = convert_number(seed, seed_to_soil_map)
-        fertilizer = convert_number(soil, soil_to_fertilizer_map)
-        water = convert_number(fertilizer, fertilizer_to_water_map)
-        light = convert_number(water, water_to_light_map)
-        temperature = convert_number(light, light_to_temperature_map)
-        humidity = convert_number(temperature, temperature_to_humidity_map)
-        location = convert_number(humidity, humidity_to_location_map)
-
-        lowest_location = min(lowest_location, location)
-
-    return lowest_location
-
-print(find_lowest_location(initial_seeds))
+# Solution by Jonathan Paulson
