@@ -1,4 +1,4 @@
-4: Scratchcards (https://adventofcode.com/2023/day/4) ---
+4: Scratchcards (https://adventofcode.com/<Year>/day/<Number>) ---
 PART ONE    
     -
 

@@ -1,24 +1,54 @@
 4: Scratchcards (https://adventofcode.com/2023/day/4) ---
 PART ONE    
-    -
+    - Boats move faster if their button was held longer, but time spent holding the button counts against the total race time. You can only hold the button at the start of the race, and boats don't move until the button is released.
 
-    Task: 
+    For example:
+
+        Time:      7  15   30
+        Distance:  9  40  200
+        This document describes three races:
+
+    The first race lasts 7 milliseconds. The record distance in this race is 9 millimeters.
+    The second race lasts 15 milliseconds. The record distance in this race is 40 millimeters.
+    The third race lasts 30 milliseconds. The record distance in this race is 200 millimeters.
+
+    Since the current record for this race is 9 millimeters, there are actually 4 different ways you could win: you could hold the button for 2, 3, 4, or 5 milliseconds at the start of the race.
+
+    In the second race, you could hold the button for at least 4 milliseconds and at most 11 milliseconds and beat the record, a total of 8 different ways to win.
+
+    In the third race, you could hold the button for at least 11 milliseconds and no more than 19 milliseconds and still beat the record, a total of 9 ways you could win.
+
+    To see how much margin of error you have, determine the number of ways you can beat the record in each race; in this example, if you multiply these values together, you get 288 (4 * 8 * 9).
+
+
+    Task: What do you get if you multiply these numbers together?
+
+
 
     WHAT I UNDERSTAND:
-        -> 
+        -> you hold the button down that will be subtracted from your time since the boat will have to travel the distance in the remaining time so button held down will be subtracted from the final time you have then that will will be multiplied with the actual speed the boats is going to gain based on how long the button was held down. for example if you hold the button for 4 seconds that will give you 4x speed but for ever 1x speed you gain you lost 1x time from you final time so you only have 3x time to travel using the 4x speed you have acquired so 4speed x 3time (remaining time) which will give you the distance then check that against the record if its more add it to the way you can beat the record
 
     
     POSSIBLE SOLUTION:
-        - 
+        - val = i * (t - i) something like this value will be the current times you're holding the button 0 - len of the max time you have and for each iteration you multiple that with t - how long you're holding the button so for example if you hold the button for 3 milliseconds you will have 4 second until you get to your limit being (7) so then just check if that value is above the record d then add it to the number of ways you can beat it for that race the final just return the product of all the values of the len of ways you can beat the record super easy.
 
 PART TWO 
     - 
 
-    Task: 
+    the example from before:
+
+    Time:      7  15   30
+    Distance:  9  40  200
+    ...now instead means this:
+
+    Time:      71530
+    Distance:  940200
+
+    Task: How many ways can you beat the record in this one much longer race?
 
 
     WHAT I UNDERSTAND:
-        ->
+        -> same problem only difference is the number is quite larger now
     
     POSSIBLE SOLUTION:
-        - 
+        - same as the above one but before we parsed the time in a different way this time there is no space between them so just take the whole numbers in the single line after the ":" as a single value so you will only have 1 time and 1 distance record to check against even simpler then part 1 :)
