@@ -2,7 +2,6 @@ import sys
 
 Data = open(sys.argv[1]).read().strip()
 
-
 def getNumWaysBeat(Data):
     lines = Data.split("\n")
 
