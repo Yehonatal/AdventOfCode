@@ -1,0 +1,24 @@
+4: Scratchcards (https://adventofcode.com/<Year>/day/<Number>) ---
+PART ONE    
+    -
+
+    Task: 
+
+    WHAT I UNDERSTAND:
+        -> 
+
+    
+    POSSIBLE SOLUTION:
+        - 
+
+PART TWO 
+    - 
+
+    Task: 
+
+
+    WHAT I UNDERSTAND:
+        ->
+    
+    POSSIBLE SOLUTION:
+        - 

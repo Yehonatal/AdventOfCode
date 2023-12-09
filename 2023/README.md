@@ -7,4 +7,4 @@
     Day 5: If You Give A Seed A Fertilizer - ⭐ (⭐ idk about this one am just running out of memory 🤧 very painful to say the least)
     Day 6: Wait For It - ⭐ ⭐
     Day 7: Camel Cards - SKILL ISSUE 🤧
-    Day 8: Haunted Wasteland - ⭐ ⭐ (Better days are coming 😇 )
+    Day 8: Haunted Wasteland - ⭐ ⭐
